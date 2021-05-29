@@ -177,7 +177,7 @@ public class CSVUtil {
 
     public static void createAssignmentFile(List<Assignment> assignments) {
         final List<String> yield = assignments.stream().map(item -> String.format("%s , %s", item.getLoanId(), item.getFacilityId())).collect(Collectors.toList());
-        try (FileWriter yieldWriter = new FileWriter("Yield.csv")) {
+        try (FileWriter yieldWriter = new FileWriter("Assignment.csv")) {
             yieldWriter.append("Loan Id");
             yieldWriter.append(",");
             yieldWriter.append("Facility Id");
