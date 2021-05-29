@@ -1,0 +1,65 @@
+swagger: "2.0"
+info:
+  description: "Loan balancer applciation that consumes loans from the stream and assigns each loan to a facility while respecting each facility's covenants"
+  version: "1.0.0"
+  title: "Loan Balancer"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@affirm"
+host: "affirm.loanbalancer.com"
+basePath: "/v1"
+tags:
+- name: "Loans"
+  description: "About Loans"
+schemes:
+- "https"
+- "http"
+paths:
+  /status/{id}:
+    get:
+      tags:
+      - "Loans"
+      summary: "Find loan status by ID"
+      description: "Returns status of the loan"
+      operationId: "getStatusById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of loan"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Status"
+        "400":
+          description: "Invalid ID supplied"
+        "401":
+          description: "You are not authenticated to access this service"
+        "403":
+          description: "You are not authorized to access this service"
+        "404":
+          description: "Loan not found"
+   
+definitions:
+  Status:
+    type: "object"
+    properties:
+      loanId:
+        type: "integer"
+        format: "int64"
+      facilityId:
+        type: "integer"
+        format: "int64"
+      status:
+        type: "string"
+        description: "Loan Status"
+        enum:
+        - "new"
+        - "inprogress"
+        - "approved"
+        - "declined"

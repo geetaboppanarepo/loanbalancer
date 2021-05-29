@@ -10,6 +10,7 @@ food truck application on your local machine
 Prerequisites
 Java 1.8
 Maven 3.8.1
+postman
 
 Assumptions
 JAVA_HOME, MAVEN_HOME path, classpath is set on the user machine
